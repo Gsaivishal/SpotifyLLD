@@ -23,4 +23,12 @@ public class Song {
 	public void setAlbum(String album) {
 		this.album = album;
 	}
+	
+	public void play() {
+		System.out.println("Song is Playing");
+	}
+	
+	public void pause() {
+		System.out.println("Song has been Paused");
+	}
 }

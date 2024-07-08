@@ -1,5 +1,7 @@
 package User;
 
+import Spotify.*;
+
 public class UserServiceImpl implements UserService {
 	private UserDao userDao = new UserDaoImpl();
 
@@ -9,7 +11,7 @@ public class UserServiceImpl implements UserService {
 		 * Hard-coding for now. But can get input via command line
 		 */
 		User user = User.getBuilder().setName("Vishal").setAge(25).setContactNumber("123456789").setNationality("India")
-				.setPremiumUser(false).build();
+				.setPremiumUser(false).setSpotify(new Spotify()).build();
 		
 		// save user Info into DB
 		userDao.saveIntoDB(user);
@@ -24,5 +26,4 @@ public class UserServiceImpl implements UserService {
 		else
 			System.out.println("Invalid creds");
 	}
-
 }

@@ -1,5 +1,7 @@
 package User;
 
+import Spotify.Spotify;
+
 /*
  *	Builder pattern.
  *	Validating the details of user before creating the user object
@@ -11,8 +13,12 @@ public class User {
 	private String nationality;
 	private String contactNumber;
 	private boolean isPremiumUser;
+	public Spotify spotify;
 	
 	public User(Builder builder) {
+		if(builder.getSpotify() == null)
+			throw new RuntimeException("User should have an application");
+		
 		if(isNameValid(builder.getName()) == false)
 			throw new RuntimeException("Invalid Name");
 		
@@ -65,6 +71,7 @@ public class User {
 		private String nationality;
 		private String contactNumber;
 		private boolean isPremiumUser;
+		private Spotify spotify;
 		
 		public Builder setName(String name) {
 			this.name = name;
@@ -86,6 +93,10 @@ public class User {
 			this.isPremiumUser = isPremiumUser;
 			return this;
 		}
+		public Builder setSpotify(Spotify spotify) {
+			this.spotify = spotify;
+			return this;
+		}
 		
 		public String getName() {
 			return name;
@@ -101,6 +112,9 @@ public class User {
 		}
 		public boolean isPremiumUser() {
 			return isPremiumUser;
+		}
+		public Spotify getSpotify() {
+			return spotify;
 		}
 		
 		public User build() {
